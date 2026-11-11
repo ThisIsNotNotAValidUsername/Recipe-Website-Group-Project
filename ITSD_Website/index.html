@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" data-ui-sounds="true">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Recipe Website</title>
+        <link rel="stylesheet" href="style.css">
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <!-- Bootstrap UI Sounds -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-ui-sounds/js/bootstrap-ui-sounds.min.js" defer></script>
+    </head>
+
+    <body>
+        <div class="container-fluid navigation">
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-primary" onclick="home.swap()">
+                        <span class="btn-text fs-1">Home</span>
+                    </button>
+                </div>
+                <div class="col">
+                    <button class="btn btn-primary">
+                        <span class="btn-text fs-1" onclick="recipe_explorer.swap()">Recipe Explorer</span>
+                    </button>
+                </div>
+                <div class="col">
+                    <button class="btn btn-primary">
+                        <span class="btn-text fs-1" onclick="user_recipes.swap()">User Recipes</span>
+                    </button>
+                </div>
+                <div class="col">
+                    <button class="btn btn-primary" onclick="account.swap()">
+                        <span class="btn-text fs-1">Account</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Holder class for some extra styling -->
+        <div class="container-fluid primary_page_holder px-4">
+            <!-- Home page with a small introduction to the web page -->
+            <div class="container-fluid hidden primary_page" id="home">
+                <div class="container header">
+                    Recipe Website
+                </div>
+                <hr>
+                <div class="container about">
+                    Welcome to the recipe website! This is an application designed for college students to help you find the perfect recipes! Whether you want to lose weight,
+                    eat for fitness, or just want to find a new recipe to try, this website has you covered! Use the navigation bar above to explore the different features of the website.
+                </div>
+            </div>
+            <!-- The recipe search engine where users can look up or be recomended recipes -->
+            <div class="container-fluid hidden primary_page" id="recipe_explorer">
+                Recipe Explorer
+            </div>
+            <!-- Where all of the users favorites / liked recipes are stored -->
+            <div class="container-fluid hidden primary_page" id="user_recipes">
+                User Recipes
+            </div>
+            <!-- Information about the users account -->
+            <div class="container-fluid hidden primary_page" id="account">
+                Account
+            </div>
+        </div>
+
+        <!-- Bootstrap script -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        
+        <!-- Custom scripts -->
+        <script src="Page.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
