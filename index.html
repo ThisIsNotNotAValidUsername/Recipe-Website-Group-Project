@@ -12,54 +12,152 @@
     </head>
 
     <body>
-        <div class="container-fluid navigation">
-            <div class="row">
-                <div class="col btn-holder">
-                    <button class="btn btn-primary" onclick="home.swap()">
-                        <span class="btn-text fs-1">Home</span>
-                    </button>
-                </div>
-                <div class="col btn-holder">
-                    <button class="btn btn-primary">
-                        <span class="btn-text fs-1" onclick="recipe_explorer.swap()">Explorer</span>
-                    </button>
-                </div>
-                <div class="col btn-holder">
-                    <button class="btn btn-primary">
-                        <span class="btn-text fs-1" onclick="user_recipes.swap()">Recipes</span>
-                    </button>
-                </div>
-                <div class="col btn-holder">
-                    <button class="btn btn-primary" onclick="account.swap()">
-                        <span class="btn-text fs-1">Account</span>
-                    </button>
+        <div class="container-fluid" id="login">
+            <div class="container-fluid primary_page_holder px-4">
+                <div class="primary_page">
+                    <div class="container header">
+                        Welcome to the Recipe Website
+                    </div>
+                    <hr>
+                    <div class="container about">
+                        Please log in to continue. If you do not have an account, either create a new account or click the Continue as Guest button to continue without an account.
+                    </div>
+                    <div class="container text-center">
+                        <button class="btn btn-primary nav-btn" onclick="login(true)">
+                            <span class="btn-nav-text fs-4">Continue As Guest</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- Holder class for some extra styling -->
-        <div class="container-fluid primary_page_holder px-4">
-            <!-- Home page with a small introduction to the web page -->
-            <div class="container-fluid hidden primary_page" id="home">
-                <div class="container header">
-                    Recipe Website
+        <div class="container-fluid hidden" id="main">
+            <div class="container-fluid navigation">
+                <div class="row">
+                    <div class="col btn-holder" onclick="home.swap()">
+                        <button class="btn btn-primary nav-btn">
+                            <span class="btn-nav-text fs-1">Home</span>
+                        </button>
+                    </div>
+                    <div class="col btn-holder">
+                        <button class="btn btn-primary nav-btn" onclick="recipe_explorer.swap()">
+                            <span class="btn-nav-text fs-1">Explorer</span>
+                        </button>
+                    </div>
+                    <div class="col btn-holder" id="user_recipes_btn_holder">
+                        <button class="btn btn-primary nav-btn" onclick="user_recipes.swap()">
+                            <span class="btn-nav-text fs-1">Recipes</span>
+                        </button>
+                    </div>
+                    <div class="col btn-holder" id="account_btn_holder" onclick="account.swap()">
+                        <button class="btn btn-primary nav-btn">
+                            <span class="btn-nav-text fs-1">Account</span>
+                        </button>
+                    </div>
                 </div>
-                <hr>
-                <div class="container about">
-                    Welcome to the recipe website! This is an application designed for college students to help you find the perfect recipes! Whether you want to lose weight,
-                    eat for fitness, or just want to find a new recipe to try, this website has you covered! Use the navigation bar above to explore the different features of the website.
+            </div>
+            <!-- Holder class for some extra styling -->
+            <div class="container-fluid primary_page_holder px-4">
+                <!-- Home page with a small introduction to the web page -->
+                <div class="container-fluid hidden primary_page" id="home">
+                    <div class="container header">
+                        Recipe Website
+                    </div>
+                    <hr>
+                    <div class="container about">
+                        Welcome to the recipe website! This is an application designed for college students to help you find the perfect recipes! Whether you want to lose weight,
+                        eat for fitness, or just want to find a new recipe to try, this website has you covered! Use the navigation bar above to explore the different features of the website.
+                    </div>
                 </div>
-            </div>
-            <!-- The recipe search engine where users can look up or be recomended recipes -->
-            <div class="container-fluid hidden primary_page" id="recipe_explorer">
-                Recipe Explorer
-            </div>
-            <!-- Where all of the users favorites / liked recipes are stored -->
-            <div class="container-fluid hidden primary_page" id="user_recipes">
-                User Recipes
-            </div>
-            <!-- Information about the users account -->
-            <div class="container-fluid hidden primary_page" id="account">
-                Account
+                <!-- The recipe search engine where users can look up or be recomended recipes -->
+                <div class="container-fluid hidden primary_page" id="recipe_explorer">
+                    <div class="container header">
+                        Recipe Explorer
+                    </div>
+                    <hr>
+                    <div class="container about">
+                        Here you can search for new recipes to add to your favorites! You can search for recipes by name, ingredients, or even by dietary restrictions.
+                    </div>
+                </div>
+                <!-- Where all of the users favorites / liked recipes are stored -->
+                <div class="container-fluid hidden primary_page" id="user_recipes">
+                    <div class="container header">
+                        User Recipes
+                    </div>
+                    <hr>
+                    <div class="container about">
+                        Here you can view all of your favorite recipes! You can also remove recipes from your favorites list if you no longer want them.
+                    </div>
+                </div>
+                <!-- Information about the users account -->
+                <div class="container-fluid hidden primary_page" id="account">
+                    <div class="container header">
+                        Account
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="container col account_image_holder">
+                            <img src="images/account.png" alt="Account Image" id="account_image">
+                        </div>
+                        <div class="container col Personal-Information">
+                            <div class="row">
+                                <div class="col info-header text-end">
+                                    First Name:
+                                </div>
+                                <div class="col info-value" id="first_name">
+                                    ERROR
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col info-header text-end">
+                                    Last Name:
+                                </div>
+                                <div class="col info-value" id="last_name">
+                                    ERROR
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col info-header text-end">
+                                    Email:
+                                </div>
+                                <div class="col info-value" id="email">
+                                    ERROR
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col info-header text-end">
+                                    Password:
+                                </div>
+                                <div class="col info-value" id="password">
+                                    ERROR
+                                </div>
+                            </div>
+                            <br>
+                            <div class="container" style="width: fit-content;">
+                                <div class="row py-1">
+                                    <div class="col info-header text-center">
+                                        <button class="btn btn-primary btn-account btn-account-info">
+                                            <span class="btn-account-text fs-4" onclick="alert('IN PROGRESS')">Change Password</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row py-1">
+                                    <div class="col info-header text-center">
+                                        <button class="btn btn-primary btn-account btn-account-info">
+                                            <span class="btn-account-text fs-4" onclick="alert('IN PROGRESS')">Change Email</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row py-1">
+                                    <div class="col info-header text-center">
+                                        <button class="btn btn-primary btn-account btn-danger">
+                                            <span class="btn-account-text fs-4" onclick="alert('IN PROGRESS')">Delete Account</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
