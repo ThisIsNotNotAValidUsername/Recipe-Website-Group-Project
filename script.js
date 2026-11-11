@@ -21,6 +21,41 @@ function createAccount(first_name, last_name, email, password) {
     const new_account = new Account(first_name, last_name, email, password);
 }
 
+function loadRecipe(destination_id, recipe_name, recipe_ingredients, recipe_instructions, recipe_image) {
+    // Get the recipe template and clone it
+    const template = document.getElementById("recipe_template");
+    const templateClone = template.content.cloneNode(true);
+
+    // Populate the recipe name and image
+    templateClone.querySelector(".recipe_image").src = recipe_image;
+    templateClone.querySelector(".recipe_name").textContent = recipe_name;
+
+    // Populate the ingredients list
+    for (let i = 0; i < recipe_ingredients.length; i++) {
+        const ingredient = recipe_ingredients[i];
+        const list_item = document.createElement("li");
+        list_item.textContent = ingredient;
+        templateClone.querySelector(".recipe_ingredients").appendChild(list_item);
+    }
+
+    // Populate the instructions list
+    for (let i = 0; i < recipe_instructions.length; i++) {
+        const instruction = recipe_instructions[i];
+        const list_item = document.createElement("li");
+        list_item.textContent = instruction;
+        templateClone.querySelector(".recipe_instructions").appendChild(list_item);
+    }
+
+    // Append the populated template to the destination element
+    document.getElementById(destination_id).appendChild(templateClone);
+}
+
+/*
+Example call, use in browser console to test:
+loadRecipe("explorer_recipe_holder", "Pasta", ["Ingredient 1", "Ingredient 2", "Ingredient 3"], ["Instruction 1", "Instruction 2", "Instruction 3"], "source")
+*/
+
+// Create Page instances for each page in the application
 const home = new Page("home");
 const recipe_explorer = new Page("recipe_explorer");
 const user_recipes = new Page("user_recipes");

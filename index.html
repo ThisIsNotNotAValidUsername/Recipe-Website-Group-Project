@@ -55,6 +55,31 @@
                     </div>
                 </div>
             </div>
+
+        <template id="recipe_template">
+            <div class="container recipe_holder">
+                <div class="row">
+                    <div class="col recipe_image_holder">
+                        <!-- Filled in via function -->
+                        <img src="" alt="Recipe Image" class="recipe_image">
+                    </div>
+                    <div class="col recipe_info_holder">
+                        <h1 class="recipe_name">
+                            <!-- Filled in via function -->
+                        </h1>
+                        <h1 class="recipe_ingredients_header">Ingredients:</h1>
+                        <ul class="recipe_ingredients">
+                            <!-- Filled in via function -->
+                        </ul>
+                        <h1 class="recipe_instructions_header">Instructions:</h1>
+                        <ul class="recipe_instructions">
+                            <!-- Filled in via function -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </template>
+
             <!-- Holder class for some extra styling -->
             <div class="container-fluid primary_page_holder px-4">
                 <!-- Home page with a small introduction to the web page -->
@@ -77,6 +102,9 @@
                     <div class="container about">
                         Here you can search for new recipes to add to your favorites! You can search for recipes by name, ingredients, or even by dietary restrictions.
                     </div>
+                    <div class="container" id="explorer_recipe_holder">
+                        <!-- User recipes will be loaded here -->
+                    </div>
                 </div>
                 <!-- Where all of the users favorites / liked recipes are stored -->
                 <div class="container-fluid hidden primary_page" id="user_recipes">
@@ -86,6 +114,9 @@
                     <hr>
                     <div class="container about">
                         Here you can view all of your favorite recipes! You can also remove recipes from your favorites list if you no longer want them.
+                    </div>
+                    <div class="container" id="user_recipe_holder">
+                        <!-- User recipes will be loaded here -->
                     </div>
                 </div>
                 <!-- Information about the users account -->
