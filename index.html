@@ -57,10 +57,53 @@
             <div class="container-fluid hidden primary_page" id="user_recipes">
                 User Recipes
             </div>
-            <!-- Information about the users account -->
-            <div class="container-fluid hidden primary_page" id="account">
-                Account
+            
+
+<!-- Account page -->
+<div class="container-fluid hidden primary_page" id="account">
+    <h2 class="mt-4">My Account</h2>
+    <hr>
+
+    <h4>Account Settings</h4>
+
+    <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input type="text" class="form-control" id="username" placeholder="Enter username">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Fitness Goal</label>
+        <select class="form-select" id="fitness_goal">
+            <option value="maintenance">Maintenance</option>
+            <option value="weight_loss">Weight Loss</option>
+            <option value="muscle_gain">Muscle Gain</option>
+        </select>
+    </div>
+
+    <button class="btn btn-primary" id="save_account">Save Settings</button>
+    <p id="save_message" class="mt-3"></p>
+
+    <!-- Only shown on Account page -->
+    <hr class="mt-4">
+    <h3>My Saved Recipes</h3>
+    <p>Here are your favorite recipes!</p>
+
+    <div class="row" id="saved_recipes">
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">No Saved Recipes Yet</h5>
+                    <p class="card-text">
+                        Recipes you save will appear here.
+                    </p>
+                </div>
             </div>
+        </div>
+    </div>
+</div>
+
+
+
         </div>
 
         <!-- Bootstrap script -->
