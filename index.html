@@ -12,6 +12,7 @@
     </head>
 
     <body>
+        <!-- Login Page -->
         <div class="container-fluid" id="login">
             <div class="container-fluid primary_page_holder px-4">
                 <div class="primary_page">
@@ -30,7 +31,11 @@
                 </div>
             </div>
         </div>
+
+        <!-- Main Page -->
         <div class="container-fluid hidden" id="main">
+
+            <!-- Navbar -->
             <div class="container-fluid navigation">
                 <div class="row">
                     <div class="col btn-holder" onclick="home.swap()">
@@ -56,32 +61,34 @@
                 </div>
             </div>
 
-        <template id="recipe_template">
-            <div class="container recipe_holder">
-                <div class="row">
-                    <div class="col recipe_image_holder">
-                        <!-- Filled in via function -->
-                        <img src="" alt="Recipe Image" class="recipe_image">
-                    </div>
-                    <div class="col recipe_info_holder">
-                        <h1 class="recipe_name">
+            <!-- Template for the recipes -->
+            <template id="recipe_template">
+                <div class="container recipe_holder">
+                    <div class="row">
+                        <div class="col recipe_image_holder">
                             <!-- Filled in via function -->
-                        </h1>
-                        <h1 class="recipe_ingredients_header">Ingredients:</h1>
-                        <ul class="recipe_ingredients">
-                            <!-- Filled in via function -->
-                        </ul>
-                        <h1 class="recipe_instructions_header">Instructions:</h1>
-                        <ul class="recipe_instructions">
-                            <!-- Filled in via function -->
-                        </ul>
+                            <img src="" alt="Recipe Image" class="recipe_image">
+                        </div>
+                        <div class="col recipe_info_holder">
+                            <h1 class="recipe_name">
+                                <!-- Filled in via function -->
+                            </h1>
+                            <h1 class="recipe_ingredients_header">Ingredients:</h1>
+                            <ul class="recipe_ingredients">
+                                <!-- Filled in via function -->
+                            </ul>
+                            <h1 class="recipe_instructions_header">Instructions:</h1>
+                            <ul class="recipe_instructions">
+                                <!-- Filled in via function -->
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </template>
+            </template>
 
             <!-- Holder class for some extra styling -->
             <div class="container-fluid primary_page_holder px-4">
+
                 <!-- Home page with a small introduction to the web page -->
                 <div class="container-fluid hidden primary_page" id="home">
                     <div class="container header">
@@ -93,6 +100,7 @@
                         eat for fitness, or just want to find a new recipe to try, this website has you covered! Use the navigation bar above to explore the different features of the website.
                     </div>
                 </div>
+
                 <!-- The recipe search engine where users can look up or be recomended recipes -->
                 <div class="container-fluid hidden primary_page" id="recipe_explorer">
                     <div class="container header">
@@ -106,6 +114,7 @@
                         <!-- User recipes will be loaded here -->
                     </div>
                 </div>
+
                 <!-- Where all of the users favorites / liked recipes are stored -->
                 <div class="container-fluid hidden primary_page" id="user_recipes">
                     <div class="container header">
@@ -119,6 +128,7 @@
                         <!-- User recipes will be loaded here -->
                     </div>
                 </div>
+
                 <!-- Information about the users account -->
                 <div class="container-fluid hidden primary_page" id="account">
                     <div class="container header">
@@ -189,6 +199,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
 
