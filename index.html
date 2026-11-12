@@ -4,6 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Recipe Website</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
         <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
@@ -44,7 +46,7 @@
                         </button>
                     </div>
                     <div class="col btn-holder">
-                        <button class="btn btn-primary nav-btn" onclick="recipe_explorer.swap()">
+                        <button class="btn btn-primary nav-btn" onclick="recipe_explorer.swap(); clearExplorer()">
                             <span class="btn-nav-text fs-1">Explorer</span>
                         </button>
                     </div>
@@ -91,14 +93,51 @@
 
                 <!-- Home page with a small introduction to the web page -->
                 <div class="container-fluid hidden primary_page" id="home">
-                    <div class="container header">
-                        Recipe Website
+                    <section class="hero">
+                        <h1 class="hero-title">Eat well on a student budget.</h1>
+                        <p class="hero-sub">Search cheap recipes, pick a diet goal, and keep the ones you love.</p>
+                        <form class="search-form" id="search_form" role="search">
+                            <input id="search_input" type="search" class="search-input" placeholder="Try rice, chicken, or oats" aria-label="Search recipes by name or ingredient" autocomplete="off">
+                            <button class="search-btn" type="submit">Search</button>
+                        </form>
+                        <div class="filter-row">
+                            <div class="chips" id="goal_chips" role="group" aria-label="Diet goal">
+                                <button type="button" class="chip active" data-goal="all">All goals</button>
+                                <button type="button" class="chip" data-goal="lose">Lose weight</button>
+                                <button type="button" class="chip" data-goal="muscle">Build muscle</button>
+                                <button type="button" class="chip" data-goal="maintain">Maintain</button>
+                            </div>
+                            <label class="price-filter">Max price per serving
+                                <select id="price_filter">
+                                    <option value="any">Any</option>
+                                    <option value="1">Under $1</option>
+                                    <option value="2">Under $2</option>
+                                    <option value="3">Under $3</option>
+                                </select>
+                            </label>
+                        </div>
+                    </section>
+
+                    <section class="home-section">
+                        <h2 class="section-title">Popular with students</h2>
+                        <div class="recipe-grid" id="featured_grid"></div>
+                    </section>
+
+                    <div class="two-col">
+                        <section class="home-section">
+                            <h2 class="section-title">Saved</h2>
+                            <div class="recipe-grid two-up" id="saved_row"></div>
+                        </section>
+                        <section class="home-section">
+                            <div class="section-head">
+                                <h2 class="section-title">Recently viewed</h2>
+                                <button type="button" class="link-btn" id="clear_recent">Clear</button>
+                            </div>
+                            <div class="recipe-grid two-up" id="recent_row"></div>
+                        </section>
                     </div>
-                    <hr>
-                    <div class="container about">
-                        Welcome to the recipe website! This is an application designed for college students to help you find the perfect recipes! Whether you want to lose weight,
-                        eat for fitness, or just want to find a new recipe to try, this website has you covered! Use the navigation bar above to explore the different features of the website.
-                    </div>
+
+                    <p class="backend-status" id="backend_status" role="status">Checking backend connection...</p>
                 </div>
 
                 <!-- The recipe search engine where users can look up or be recomended recipes -->
@@ -110,8 +149,37 @@
                     <div class="container about">
                         Here you can search for new recipes to add to your favorites! You can search for recipes by name, ingredients, or even by dietary restrictions.
                     </div>
+                    <div class="container" id="explorer_controls_wrap">
+                        <div class="explorer-controls">
+                            <input id="ex_search" type="search" placeholder="Search by name or ingredient" aria-label="Search recipes" autocomplete="off">
+                            <select id="ex_goal" aria-label="Diet goal">
+                                <option value="all">All goals</option>
+                                <option value="lose">Lose weight</option>
+                                <option value="muscle">Build muscle</option>
+                                <option value="maintain">Maintain</option>
+                            </select>
+                            <select id="ex_price" aria-label="Max price per serving">
+                                <option value="any">Any price</option>
+                                <option value="1">Under $1</option>
+                                <option value="2">Under $2</option>
+                                <option value="3">Under $3</option>
+                            </select>
+                            <select id="ex_sort" aria-label="Sort recipes">
+                                <option value="price">Cheapest first</option>
+                                <option value="protein">Most protein</option>
+                                <option value="calories">Fewest calories</option>
+                                <option value="minutes">Quickest</option>
+                            </select>
+                            <button type="button" class="ex-clear hidden" id="ex_clear">✕ Clear search</button>
+                        </div>
+                        <p class="result-count" id="ex_count"></p>
+                    </div>
                     <div class="container" id="explorer_recipe_holder">
-                        <!-- User recipes will be loaded here -->
+                        <!-- Recipes are loaded here -->
+                    </div>
+                    <div class="container hidden" id="ex_other_wrap">
+                        <h2 class="section-title">All other recipes</h2>
+                        <div id="ex_other_holder"></div>
                     </div>
                 </div>
 
@@ -124,8 +192,17 @@
                     <div class="container about">
                         Here you can view all of your favorite recipes! You can also remove recipes from your favorites list if you no longer want them.
                     </div>
+                    <div class="container">
+                        <h2 class="section-title">Saved</h2>
+                    </div>
                     <div class="container" id="user_recipe_holder">
-                        <!-- User recipes will be loaded here -->
+                        <!-- Saved recipes are loaded here -->
+                    </div>
+                    <div class="container">
+                        <h2 class="section-title">Recently viewed</h2>
+                    </div>
+                    <div class="container" id="user_recent_holder">
+                        <!-- Recently viewed recipes are loaded here -->
                     </div>
                 </div>
 
@@ -137,7 +214,7 @@
                     <hr>
                     <div class="row">
                         <div class="container col account_image_holder">
-                            <img src="Default Images/Account_Image_Placeholder.png" alt="Account Image" id="account_image">
+                            <img src="Default Images/Account_Image_Placeholder.webp" alt="Account Image" id="account_image">
                         </div>
                         <div class="container col Personal-Information">
                             <div class="row">
@@ -203,12 +280,37 @@
             </div>
         </div>
 
+        <!-- Recipe detail popup -->
+        <div class="modal fade" id="recipe_modal" tabindex="-1" aria-labelledby="modal_title" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content recipe-modal">
+                    <div class="modal-header">
+                        <div>
+                            <h2 class="modal-title" id="modal_title"></h2>
+                            <div class="card-stats" id="modal_stats"></div>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h3>Ingredients</h3>
+                        <ul id="modal_ingredients"></ul>
+                        <h3>Steps</h3>
+                        <ol id="modal_steps"></ol>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="save-btn-lg" id="modal_save"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Bootstrap script -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
         
         <!-- Custom scripts -->
         <script src="Account.js"></script>
         <script src="Page.js"></script>
+        <script src="recipes.js"></script>
         <script src="script.js"></script>
     </body>
 </html>
