@@ -57,7 +57,7 @@ loadRecipe("explorer_recipe_holder", "Pasta", ["Ingredient 1", "Ingredient 2", "
 
 // Test backend connection
 function testBackendConnection() {
-    fetch('recipe-website-group-project-backend.onrender.com/api/test/')
+    fetch('https://recipe-website-group-project-backend.onrender.com/test/')
         .then(response => response.json())
         .then(data => {
             console.log(data.message);
