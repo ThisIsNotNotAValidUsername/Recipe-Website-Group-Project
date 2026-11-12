@@ -55,6 +55,19 @@ Example call, use in browser console to test:
 loadRecipe("explorer_recipe_holder", "Pasta", ["Ingredient 1", "Ingredient 2", "Ingredient 3"], ["Instruction 1", "Instruction 2", "Instruction 3"], "source")
 */
 
+// Test backend connection
+function testBackendConnection() {
+    fetch('recipe-website-group-project-backend.onrender.com/api/test/')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.message);
+        })
+        .catch(error => {
+            console.error('Backend connection failed:', error);
+        });
+}
+
+
 // Create Page instances for each page in the application
 const home = new Page("home");
 const recipe_explorer = new Page("recipe_explorer");
