@@ -7,8 +7,8 @@ class Account {
         this.last_name = last_name;
         this.email = email;
         this.password = password;
-        this.account_id = incrementAccountID();
-        image_src = this.getAccountImage();
+        this.account_id = this.incrementAccountID();
+        const image_src = this.getAccountImage();
         this.setAccountImage(image_src);
     }
 
